@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://dwk5ume02xvau"]
+[gd_scene load_steps=6 format=3 uid="uid://dwk5ume02xvau"]
+
+[ext_resource type="Script" uid="uid://dwmd44p6evlrh" path="res://Scripts/Player.cs" id="1_8t5iv"]
+[ext_resource type="Script" uid="uid://j7s1qcwsljpn" path="res://Scripts/PlayerInputs.cs" id="1_gjdyk"]
+[ext_resource type="Script" uid="uid://dv6p3fi8n2uq2" path="res://Scripts/CharacterMotor.cs" id="3_yp48q"]
+[ext_resource type="Texture2D" uid="uid://bl8ja4rvne0q3" path="res://icon.svg" id="4_3bdrj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubbiv"]
 
 [node name="Scene" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="." node_paths=PackedStringArray("_playerInputs", "_characterMotor")]
+script = ExtResource("1_8t5iv")
+_playerInputs = NodePath("Inputs")
+_characterMotor = NodePath("PlayerBody")
+
+[node name="Inputs" type="Node2D" parent="Player"]
+script = ExtResource("1_gjdyk")
+
+[node name="PlayerBody" type="CharacterBody2D" parent="Player"]
+script = ExtResource("3_yp48q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerBody"]
+shape = SubResource("RectangleShape2D_ubbiv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/PlayerBody"]
+texture = ExtResource("4_3bdrj")
