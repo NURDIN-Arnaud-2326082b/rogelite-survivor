@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Rogelite-survivor"
-run/main_scene="uid://dwk5ume02xvau"
-config/features=PackedStringArray("4.5", "C#", "Forward Plus")
+run/main_scene="uid://bvw37y46ffbrs"
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
