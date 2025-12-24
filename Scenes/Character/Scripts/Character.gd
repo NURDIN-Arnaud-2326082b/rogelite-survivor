@@ -1,10 +1,8 @@
 extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $Sprite2D
-
+@onready var hitbox: Area2D = $AttackHitBox
 const SPEED = 300.0
-var is_attacking: bool = false
-var is_moving: bool = false
 var moving_direction: Vector2 = Vector2.ZERO
 var facing_direction: Vector2 = Vector2.DOWN
 var dir_dict = {
@@ -13,6 +11,15 @@ var dir_dict = {
 	"Left": Vector2.LEFT,
 	"Right": Vector2.RIGHT
 }
+
+enum STATE {
+	IDLE,
+	MOVE,
+	ATTACK
+}
+
+var current_state: STATE = STATE.IDLE
+
 func _ready() -> void:
 	pass
 
@@ -21,22 +28,24 @@ func _physics_process(_delta: float) -> void:
 	_move()
 	if moving_direction != Vector2.ZERO:
 		facing_direction = moving_direction.normalized()
+	_update_attack_hitbox_position()
+
 	var dir_name = _find_dir_name(facing_direction)
-	if Input.is_action_just_pressed("ui_accept") and not is_attacking:
-		is_attacking = !is_attacking
-		animated_sprite.frame = 0
-	if is_attacking:
+
+	if Input.is_action_just_pressed("ui_accept"):
+		current_state = STATE.ATTACK
+	if current_state == STATE.ATTACK:
 		if dir_name != "":
 			_set_animation("attack" + dir_name)
 	else :
-		# Handle move animation
+		current_state = STATE.IDLE
+		# Idle animation
 		if moving_direction == Vector2.ZERO:
 			animated_sprite.stop()
 			animated_sprite.frame = 0
-			is_moving = false
 		else:
-			if dir_name != "":
-				is_moving = true
+			if dir_name != "" and current_state == STATE.IDLE:
+				current_state = STATE.MOVE
 				_set_animation("move" + dir_name)
 	
 
@@ -60,7 +69,25 @@ func _find_dir_name(dir: Vector2) -> String:
 
 func _on_sprite_2d_animation_finished() -> void:
 	if "attack".is_subsequence_of(animated_sprite.get_animation()):
-		is_attacking = false
+		current_state = STATE.IDLE
 		var dir_name = _find_dir_name(facing_direction)
 		animated_sprite.set_animation("move" + dir_name)
 		animated_sprite.frame = 0
+
+func _update_attack_hitbox_position() -> void:
+	var angle = facing_direction.angle()
+	hitbox.set_rotation_degrees(rad_to_deg(angle) - 90)
+		
+func _attack_effect() -> void:
+		var bodies_array = hitbox.get_overlapping_bodies()
+		for body in bodies_array:
+			if body.has_method("destroy"):
+				body.destroy()
+			if body.has_method("interact"):
+				body.interact()
+
+
+func _on_sprite_2d_frame_changed() -> void:
+	if "attack".is_subsequence_of(animated_sprite.get_animation()):
+		if animated_sprite.frame == 2:
+			_attack_effect()

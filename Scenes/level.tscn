@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bvw37y46ffbrs"]
+[gd_scene load_steps=9 format=4 uid="uid://bvw37y46ffbrs"]
 
 [ext_resource type="Texture2D" uid="uid://dtnbol84gjxl0" path="res://Scenes/Character/Sprites/Tileset.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://6furg4ckfmc6" path="res://Scenes/Character/character.tscn" id="2_6phgx"]
+[ext_resource type="PackedScene" uid="uid://bgqbq1tdk6rll" path="res://Scenes/objects/jar.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://ke0uw5kblpx3" path="res://Scenes/objects/chest.tscn" id="4_81xng"]
+[ext_resource type="PackedScene" uid="uid://b2q42wh0bc8u6" path="res://Scenes/objects/coin.tscn" id="5_wqkje"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k5f4k"]
 
@@ -139,9 +142,31 @@ tile_set = SubResource("TileSet_wqkje")
 
 [node name="Décors" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAkAAMAAAAEAAAAAABAAAcAAAAAAAAAAAA9AAcAAAAAAAAAAAA9AAkAAAAAAAAAAABAAAkAAAAAAAAAAABAAB4AAAACAAAAAABAACAAAAACAAAAAAA+ACAAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAkAAMAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_wqkje")
 use_kinematic_bodies = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_6phgx")]
 position = Vector2(562, 249)
+
+[node name="jar" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(1024, 506)
+
+[node name="jar2" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(947, 508)
+
+[node name="jar3" parent="." instance=ExtResource("3_6phgx")]
+position = Vector2(1020, 454)
+
+[node name="chest" parent="." instance=ExtResource("4_81xng")]
+position = Vector2(1024, 127)
+
+[node name="chest2" parent="." instance=ExtResource("4_81xng")]
+position = Vector2(959, 130)
+
+[node name="chest3" parent="." instance=ExtResource("4_81xng")]
+position = Vector2(1024, 178)
+
+[node name="Coin" parent="." instance=ExtResource("5_wqkje")]
+position = Vector2(386, 256)
+scale = Vector2(1.0395424, 1)
