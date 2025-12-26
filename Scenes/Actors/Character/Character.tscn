@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://6furg4ckfmc6"]
+
+[ext_resource type="PackedScene" uid="uid://b88obf5gojlmy" path="res://Scenes/Actors/Actor.tscn" id="1_2bhip"]
+[ext_resource type="Script" uid="uid://cqchqfm5g6i63" path="res://Scenes/Actors/Character/Scripts/Character.gd" id="2_0kh73"]
+[ext_resource type="SpriteFrames" uid="uid://dcsdx8ouqued4" path="res://Scenes/Actors/Character/character_sprites.tres" id="2_35eh6"]
+[ext_resource type="Shape2D" uid="uid://812t4gtw5i5n" path="res://Scenes/Actors/Character/character_shape.tres" id="3_so3x6"]
+[ext_resource type="Shape2D" uid="uid://dk5f0jewj2wkb" path="res://Scenes/Actors/Character/character_hitbox.tres" id="4_ejk7n"]
+
+[node name="CharacterBody2D" instance=ExtResource("1_2bhip")]
+script = ExtResource("2_0kh73")
+
+[node name="Sprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_35eh6")
+animation = &"attackDown"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = ExtResource("3_so3x6")
+
+[node name="CollisionShape2D" parent="AttackHitBox" index="0"]
+shape = ExtResource("4_ejk7n")
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]

@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Rogelite-survivor"
-run/main_scene="uid://bvw37y46ffbrs"
+run/main_scene="uid://30h35h7kdd01"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GAME="*res://Autoload/Game.gd"
+EVENTS="*res://Autoload/Events.gd"
 
 [display]
 

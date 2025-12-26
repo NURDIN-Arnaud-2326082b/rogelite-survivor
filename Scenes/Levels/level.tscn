@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://30h35h7kdd01"]
+[gd_scene load_steps=10 format=4 uid="uid://bvw37y46ffbrs"]
 
-[ext_resource type="Texture2D" uid="uid://dtnbol84gjxl0" path="res://Scenes/Sprites/Tileset.png" id="1_k5f4k"]
-[ext_resource type="PackedScene" uid="uid://bgqbq1tdk6rll" path="res://Scenes/objects/Scripts/jar.tscn" id="3_6phgx"]
-[ext_resource type="PackedScene" uid="uid://ke0uw5kblpx3" path="res://Scenes/objects/Scripts/chest.tscn" id="4_81xng"]
-[ext_resource type="PackedScene" uid="uid://6furg4ckfmc6" path="res://Scenes/Actors/Character/Character.tscn" id="6_0f350"]
+[ext_resource type="Texture2D" uid="uid://dtnbol84gjxl0" path="res://Scenes/Character/Sprites/Tileset.png" id="1_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://6furg4ckfmc6" path="res://Scenes/Character/character.tscn" id="2_6phgx"]
+[ext_resource type="PackedScene" uid="uid://bgqbq1tdk6rll" path="res://Scenes/objects/jar.tscn" id="3_6phgx"]
+[ext_resource type="PackedScene" uid="uid://ke0uw5kblpx3" path="res://Scenes/objects/chest.tscn" id="4_81xng"]
 [ext_resource type="PackedScene" uid="uid://be8egvq1hbt71" path="res://Scenes/UI/ui.tscn" id="6_8c0lf"]
 [ext_resource type="Script" uid="uid://dkrwsuo2t5246" path="res://Scenes/Levels/CoinFactory.gd" id="10_oqgf2"]
 
@@ -149,6 +149,9 @@ tile_map_data = PackedByteArray("AAAkAAMAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_wqkje")
 use_kinematic_bodies = true
 
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_6phgx")]
+position = Vector2(562, 249)
+
 [node name="jar" parent="." instance=ExtResource("3_6phgx")]
 position = Vector2(1024, 506)
 
@@ -171,6 +174,3 @@ position = Vector2(1024, 178)
 
 [node name="CoinFactory" type="Node2D" parent="."]
 script = ExtResource("10_oqgf2")
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("6_0f350")]
-position = Vector2(582, 331)

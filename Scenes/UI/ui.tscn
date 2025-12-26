@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://be8egvq1hbt71"]
+
+[ext_resource type="Texture2D" uid="uid://bdlf8wppw8oku" path="res://Scenes/Sprites/HUD.png" id="1_fo61o"]
+[ext_resource type="Script" uid="uid://b1sf7kwlxjvka" path="res://Scenes/UI/HUD/Hud.gd" id="2_alcrr"]
+[ext_resource type="Texture2D" uid="uid://bkrjlapptika" path="res://Scenes/Sprites/Portrait.png" id="3_1c2ca"]
+[ext_resource type="FontFile" uid="uid://bjnnp7wjck2cn" path="res://Scenes/Sprites/BabaMediumPixels.ttf" id="4_duuxe"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="TextureRect" parent="Control"]
+z_index = 1
+clip_contents = true
+layout_mode = 0
+offset_right = 143.0
+offset_bottom = 61.0
+texture = ExtResource("1_fo61o")
+script = ExtResource("2_alcrr")
+
+[node name="Portrait" type="TextureRect" parent="Control/HUD"]
+top_level = true
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 52.0
+offset_bottom = 51.0
+texture = ExtResource("3_1c2ca")
+
+[node name="CoinCounter" type="Label" parent="Control/HUD"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 30.0
+offset_right = 84.0
+offset_bottom = 71.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_duuxe")
+text = "0
+"

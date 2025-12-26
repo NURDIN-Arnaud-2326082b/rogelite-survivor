@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://b88obf5gojlmy"]
+
+[ext_resource type="Script" uid="uid://c5nxl8lrej7jd" path="res://Scenes/Actors/Scripts/Actor.gd" id="1_io3l5"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_io3l5")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+position = Vector2(4, 19.825012)
+scale = Vector2(0.97, 0.97)
+
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="Sprite2D" to="." method="_on_sprite_2d_frame_changed"]
