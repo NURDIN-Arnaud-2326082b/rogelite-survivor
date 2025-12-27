@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://30h35h7kdd01"]
+[gd_scene load_steps=12 format=4 uid="uid://30h35h7kdd01"]
 
 [ext_resource type="Texture2D" uid="uid://dtnbol84gjxl0" path="res://Scenes/Sprites/Tileset.png" id="1_k5f4k"]
 [ext_resource type="PackedScene" uid="uid://bgqbq1tdk6rll" path="res://Scenes/objects/Scripts/jar.tscn" id="3_6phgx"]
 [ext_resource type="PackedScene" uid="uid://ke0uw5kblpx3" path="res://Scenes/objects/Scripts/chest.tscn" id="4_81xng"]
 [ext_resource type="PackedScene" uid="uid://6furg4ckfmc6" path="res://Scenes/Actors/Character/Character.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://be8egvq1hbt71" path="res://Scenes/UI/ui.tscn" id="6_8c0lf"]
+[ext_resource type="PackedScene" uid="uid://becnsymvybbrg" path="res://Scenes/Actors/Enemies/Skeleton.tscn" id="7_8c0lf"]
 [ext_resource type="Script" uid="uid://dkrwsuo2t5246" path="res://Scenes/Levels/CoinFactory.gd" id="10_oqgf2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_k5f4k"]
@@ -133,6 +134,11 @@ physics_layer_0/collision_mask = 0
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_k5f4k")
 sources/0 = SubResource("TileSetAtlasSource_81xng")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8c0lf"]
+vertices = PackedVector2Array(1163.8906, 641.90625, 0.9609375, 632.0781, -0.9609375, 11.953125, 1157.1016, 7.0390625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-9, 642, 1174, 652, 1167, -3, -11, 2)])
+
 [node name="Level" type="Node2D"]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
@@ -174,3 +180,9 @@ script = ExtResource("10_oqgf2")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_0f350")]
 position = Vector2(582, 331)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("7_8c0lf")]
+position = Vector2(371, 339)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_8c0lf")

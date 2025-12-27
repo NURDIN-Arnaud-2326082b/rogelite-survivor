@@ -6,12 +6,12 @@
 [ext_resource type="Shape2D" uid="uid://812t4gtw5i5n" path="res://Scenes/Actors/Character/character_shape.tres" id="3_so3x6"]
 [ext_resource type="Shape2D" uid="uid://dk5f0jewj2wkb" path="res://Scenes/Actors/Character/character_hitbox.tres" id="4_ejk7n"]
 
-[node name="CharacterBody2D" instance=ExtResource("1_2bhip")]
+[node name="Character" instance=ExtResource("1_2bhip")]
 script = ExtResource("2_0kh73")
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_35eh6")
-animation = &"attackDown"
+animation = &"idleDown"
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = ExtResource("3_so3x6")
