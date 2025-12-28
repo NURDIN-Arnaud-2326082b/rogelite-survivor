@@ -8,6 +8,7 @@
 
 [node name="Character" instance=ExtResource("1_2bhip")]
 script = ExtResource("2_0kh73")
+max_health = 10
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_35eh6")

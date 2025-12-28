@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://cjoybo46vuy4h"]
+
+[ext_resource type="Texture2D" uid="uid://ds43abeqpgmgf" path="res://Scenes/Sprites/InventoryItemSpriteSheet.png" id="1_0gr0h"]
+[ext_resource type="Script" uid="uid://ctcvgqclp5yeu" path="res://Scenes/objects/Item/ItemData.gd" id="1_tmglu"]
+[ext_resource type="Texture2D" uid="uid://cy1l2omn5ylxo" path="res://Scenes/Sprites/WorldItemsSpriteSheet.png" id="3_l3gmp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otv16"]
+atlas = ExtResource("1_0gr0h")
+region = Rect2(38.91559, 3.8991466, 18.187168, 26.191418)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp23b"]
+atlas = ExtResource("3_l3gmp")
+region = Rect2(18.084621, 0, 13.072025, 15.033564)
+
+[resource]
+script = ExtResource("1_tmglu")
+damage_type = 1
+damage_amount = -5
+item_name = "Magic Potion"
+item_description = "gives 5 mp"
+price = 10
+world_texture = SubResource("AtlasTexture_lp23b")
+icon_texture = SubResource("AtlasTexture_otv16")
+metadata/_custom_type_script = "uid://ctcvgqclp5yeu"

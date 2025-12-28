@@ -1,4 +1,5 @@
 extends Actor
+class_name Skeleton
 
 const SPEED = 100.0
 const CHASE_SPEED = 100.0
@@ -29,6 +30,8 @@ var attack_cooldown_timer: float = 0.0
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _ready() -> void:
+	add_to_group("Enemies")
+	
 	if navigation_agent:
 		navigation_agent.path_desired_distance = 4.0
 		navigation_agent.target_desired_distance = 4.0
@@ -46,6 +49,23 @@ func _ready() -> void:
 	call_deferred("_start_wander")
 
 func _physics_process(delta: float) -> void:
+	if get_hp() <= 0:
+		die()
+	
+	# Gérer les timers
+	if parry_window_timer > 0:
+		parry_window_timer -= delta
+	if stun_timer > 0:
+		stun_timer -= delta
+		if stun_timer <= 0:
+			current_state = STATE.IDLE
+	
+	# Si stunned, ne rien faire
+	if current_state == STATE.STUNNED:
+		moving_direction = Vector2.ZERO
+		velocity = Vector2.ZERO
+		return
+	
 	if attack_cooldown_timer > 0:
 		attack_cooldown_timer -= delta
 	
@@ -56,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		current_ai_state = AI_STATE.WANDER
 	
-	print("Current AI State: ", current_ai_state)
 	match current_ai_state:
 		AI_STATE.WANDER:
 			_ai_wander(delta)
@@ -72,7 +91,7 @@ func _physics_process(delta: float) -> void:
 
 	var dir_name = _find_dir_name(facing_direction)
 	
-	if current_state == STATE.HURT:
+	if current_state == STATE.HURT or current_state == STATE.PARRY:
 		return
 	
 	if dir_name != "":
@@ -181,6 +200,8 @@ func _on_frame_changed() -> void:
 			_attack_effect()
 
 func _hurt() -> void:
+	if current_state == STATE.BLOCK:
+		return
 	if current_state != STATE.HURT:
 		current_state = STATE.HURT
 		attack_cooldown_timer = ATTACK_COOLDOWN

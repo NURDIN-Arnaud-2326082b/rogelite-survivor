@@ -2,6 +2,7 @@ extends StaticBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var dropper_behavior: DropperBehavior = $DropperBehavior
 
 enum STATE {
 	IDLE,
@@ -26,3 +27,6 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		collision_shape.disabled = true
 		# cacher le pot 
 		animated_sprite.hide()
+		# drop item
+		if dropper_behavior:
+			dropper_behavior.drop_item()

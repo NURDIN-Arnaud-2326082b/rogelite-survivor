@@ -1,13 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://be8egvq1hbt71"]
+[gd_scene load_steps=10 format=3 uid="uid://be8egvq1hbt71"]
 
 [ext_resource type="Texture2D" uid="uid://bdlf8wppw8oku" path="res://Scenes/Sprites/HUD.png" id="1_fo61o"]
 [ext_resource type="Script" uid="uid://b1sf7kwlxjvka" path="res://Scenes/UI/HUD/Hud.gd" id="2_alcrr"]
 [ext_resource type="Texture2D" uid="uid://bkrjlapptika" path="res://Scenes/Sprites/Portrait.png" id="3_1c2ca"]
 [ext_resource type="FontFile" uid="uid://bjnnp7wjck2cn" path="res://Scenes/Sprites/BabaMediumPixels.ttf" id="4_duuxe"]
+[ext_resource type="Script" uid="uid://bwq7rh0kw23jd" path="res://Scenes/UI/inventory.gd" id="5_alcrr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fo61o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fo61o"]
+bg_color = Color(0.8627451, 0.15686275, 0.15686275, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_alcrr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c2ca"]
+bg_color = Color(0.23921569, 0.6392157, 0.7490196, 1)
 
 [node name="UI" type="CanvasLayer"]
 
-[node name="Control" type="Control" parent="."]
+[node name="UI" type="Control" parent="."]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -18,7 +29,7 @@ offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUD" type="TextureRect" parent="Control"]
+[node name="HUD" type="TextureRect" parent="UI"]
 z_index = 1
 clip_contents = true
 layout_mode = 0
@@ -27,7 +38,7 @@ offset_bottom = 61.0
 texture = ExtResource("1_fo61o")
 script = ExtResource("2_alcrr")
 
-[node name="Portrait" type="TextureRect" parent="Control/HUD"]
+[node name="Portrait" type="TextureRect" parent="UI/HUD"]
 top_level = true
 layout_mode = 0
 offset_left = 4.0
@@ -36,7 +47,7 @@ offset_right = 52.0
 offset_bottom = 51.0
 texture = ExtResource("3_1c2ca")
 
-[node name="CoinCounter" type="Label" parent="Control/HUD"]
+[node name="CoinCounter" type="Label" parent="UI/HUD"]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 30.0
@@ -46,3 +57,36 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_duuxe")
 text = "0
 "
+
+[node name="HP_Bar" type="ProgressBar" parent="UI/HUD"]
+z_index = -1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 7.0000005
+offset_right = 134.0
+offset_bottom = 33.0
+scale = Vector2(0.96043175, 0.3945138)
+theme_override_colors/font_color = Color(0.8039216, 0.8117647, 0.8235294, 0)
+theme_override_styles/background = SubResource("StyleBoxEmpty_fo61o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fo61o")
+max_value = 10.0
+value = 10.0
+
+[node name="MP_Bar" type="ProgressBar" parent="UI/HUD"]
+z_index = -1
+layout_mode = 0
+offset_left = 54.0
+offset_top = 20.0
+offset_right = 116.47191
+offset_bottom = 40.27813
+scale = Vector2(0.96043175, 0.3945138)
+theme_override_colors/font_color = Color(0.8039216, 0.8117647, 0.8235294, 0)
+theme_override_styles/background = SubResource("StyleBoxEmpty_alcrr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1c2ca")
+value = 100.0
+
+[node name="Inventory" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_alcrr")

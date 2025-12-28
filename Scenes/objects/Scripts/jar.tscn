@@ -1,7 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgqbq1tdk6rll"]
+[gd_scene load_steps=15 format=3 uid="uid://bgqbq1tdk6rll"]
 
 [ext_resource type="Script" uid="uid://bcrnaola47dkx" path="res://Scenes/objects/Scripts/jar.gd" id="1_dn0cs"]
 [ext_resource type="Texture2D" uid="uid://cnpjsnfjvqiww" path="res://Scenes/Sprites/Jar_SpriteSheet.png" id="2_oncpx"]
+[ext_resource type="Script" uid="uid://puhucld0smlm" path="res://Scenes/Behaviors/dropper_behavior.gd" id="3_wf5nk"]
+[ext_resource type="Resource" uid="uid://ccgcntcbafjiw" path="res://Resources/ItemDropWeight/HP_Potion_Weight.tres" id="4_s88sm"]
+[ext_resource type="Resource" uid="uid://c6a56nc1jitf7" path="res://Resources/ItemDropWeight/MP_Potion_Weight.tres" id="5_a6y75"]
+[ext_resource type="Resource" uid="uid://cafkusk71a5yq" path="res://Resources/ItemDropWeight/Void_Weight.tres" id="6_p1gcx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lej0j"]
 atlas = ExtResource("2_oncpx")
@@ -70,5 +74,10 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 4)
 shape = SubResource("CircleShape2D_61bmx")
+
+[node name="DropperBehavior" type="Node2D" parent="."]
+script = ExtResource("3_wf5nk")
+item_drop_array = [ExtResource("4_s88sm"), ExtResource("5_a6y75"), ExtResource("6_p1gcx")]
+metadata/_custom_type_script = "uid://puhucld0smlm"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

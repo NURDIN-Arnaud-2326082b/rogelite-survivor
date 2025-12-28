@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemDropWeight" load_steps=2 format=3 uid="uid://cafkusk71a5yq"]
+
+[ext_resource type="Script" uid="uid://dve5dfmirf57" path="res://Scenes/objects/Item/ItemDropWeight/item_drop_weight.gd" id="1_ypcj8"]
+
+[resource]
+script = ExtResource("1_ypcj8")
+weight = 10.0
+metadata/_custom_type_script = "uid://dve5dfmirf57"

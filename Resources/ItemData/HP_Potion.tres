@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=6 format=3 uid="uid://mlo5swgxrit6"]
+
+[ext_resource type="Texture2D" uid="uid://ds43abeqpgmgf" path="res://Scenes/Sprites/InventoryItemSpriteSheet.png" id="1_qqt4e"]
+[ext_resource type="Script" uid="uid://ctcvgqclp5yeu" path="res://Scenes/objects/Item/ItemData.gd" id="1_qu8lr"]
+[ext_resource type="Texture2D" uid="uid://cy1l2omn5ylxo" path="res://Scenes/Sprites/WorldItemsSpriteSheet.png" id="3_vn6b6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aljio"]
+atlas = ExtResource("1_qqt4e")
+region = Rect2(6.2502747, 3.0254145, 19.586609, 27.698246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0em57"]
+atlas = ExtResource("3_vn6b6")
+region = Rect2(2.0633087, 0, 12.890926, 15.139805)
+
+[resource]
+script = ExtResource("1_qu8lr")
+damage_amount = -10
+item_name = "Heal potion"
+item_description = "heals 10 HP"
+price = 5
+world_texture = SubResource("AtlasTexture_0em57")
+icon_texture = SubResource("AtlasTexture_aljio")
+metadata/_custom_type_script = "uid://ctcvgqclp5yeu"
