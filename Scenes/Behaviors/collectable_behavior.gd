@@ -68,3 +68,6 @@ func _collect() -> void:
 	current_state = CollectableState.COLLECTED
 	if object.has_method("_on_collected"):
 		object._on_collected()
+	
+	if "item_data" in object and object.item_data != null:
+		EVENTS.emit_signal("object_collected", object.item_data)
