@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://gtqfelpx2igg"]
+
+[ext_resource type="Texture2D" uid="uid://bl8ja4rvne0q3" path="res://icon.svg" id="1_ota51"]
+[ext_resource type="FontFile" uid="uid://bjnnp7wjck2cn" path="res://Scenes/Sprites/BabaMediumPixels.ttf" id="2_wfqup"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_it85y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w6813"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w05lo"]
+texture = ExtResource("1_ota51")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[resource]
+default_font = ExtResource("2_wfqup")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_it85y")
+ItemList/styles/panel = SubResource("StyleBoxEmpty_w6813")
+Panel/styles/panel = SubResource("StyleBoxTexture_w05lo")

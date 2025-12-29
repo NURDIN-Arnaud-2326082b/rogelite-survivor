@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://be8egvq1hbt71"]
+[gd_scene load_steps=14 format=3 uid="uid://be8egvq1hbt71"]
 
 [ext_resource type="Texture2D" uid="uid://bdlf8wppw8oku" path="res://Scenes/Sprites/HUD.png" id="1_fo61o"]
 [ext_resource type="Script" uid="uid://b1sf7kwlxjvka" path="res://Scenes/UI/HUD/Hud.gd" id="2_alcrr"]
 [ext_resource type="Texture2D" uid="uid://bkrjlapptika" path="res://Scenes/Sprites/Portrait.png" id="3_1c2ca"]
 [ext_resource type="FontFile" uid="uid://bjnnp7wjck2cn" path="res://Scenes/Sprites/BabaMediumPixels.ttf" id="4_duuxe"]
-[ext_resource type="Script" uid="uid://bwq7rh0kw23jd" path="res://Scenes/UI/inventory.gd" id="5_alcrr"]
+[ext_resource type="Script" uid="uid://b0wcmtoatbcwi" path="res://Scenes/UI/inventory.gd" id="5_alcrr"]
+[ext_resource type="Script" uid="uid://crcor2wpyjlix" path="res://Scenes/UI/black_fade.gd" id="5_mbl0m"]
+[ext_resource type="Script" uid="uid://bwq7rh0kw23jd" path="res://Scenes/UI/inventory_data_manager.gd" id="6_1c2ca"]
+[ext_resource type="Script" uid="uid://bp36olrrxaltb" path="res://Scenes/UI/item_list.gd" id="7_duuxe"]
+[ext_resource type="Theme" uid="uid://gtqfelpx2igg" path="res://Themes/MainTheme.tres" id="7_jfwrg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fo61o"]
 
@@ -85,8 +89,63 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_alcrr")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1c2ca")
 value = 100.0
 
+[node name="BlackFade" type="ColorRect" parent="UI"]
+light_mask = 0
+z_index = 1
+layout_mode = 0
+offset_right = 666.0
+offset_bottom = 374.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_mbl0m")
+
 [node name="Inventory" type="Control" parent="UI"]
+z_index = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -5.0
+offset_top = 35.0
+offset_right = 633.0
+offset_bottom = 396.0
 script = ExtResource("5_alcrr")
+
+[node name="InventoryDataManager" type="Node" parent="UI/Inventory"]
+script = ExtResource("6_1c2ca")
+
+[node name="Panel" type="Panel" parent="UI/Inventory"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -36.0
+offset_right = 180.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("7_jfwrg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Inventory/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/Inventory/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="UI/Inventory/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("7_duuxe")
+
+[connection signal="item_added" from="UI/Inventory/InventoryDataManager" to="UI/Inventory/Panel/VBoxContainer/ItemList" method="_on_inventory_data_manager_item_added"]
+[connection signal="item_removed" from="UI/Inventory/InventoryDataManager" to="UI/Inventory/Panel/VBoxContainer/ItemList" method="_on_inventory_data_manager_item_removed"]
