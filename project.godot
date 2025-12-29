@@ -33,6 +33,10 @@ window/stretch/aspect="keep_width"
 
 project/assembly_name="Rogelite-survivor"
 
+[global_group]
+
+Player=""
+
 [input]
 
 ui_accept={
